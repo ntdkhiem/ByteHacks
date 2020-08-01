@@ -10,8 +10,9 @@ def index():
     jobs = requests.get('http://localhost/api/jobs').json()
     return render_template('dashboard.html', jobs=jobs)
 
-@dashb.route('/job/<int:id>', methods=('GET', 'POST'))
+@dashb.route('/job/<string:id>', methods=('GET', 'POST'))
 @login_required
 def job(id):
     # get more info about a job or take this job 
-    pass
+    job = requests.get(f'http://localhost/api/job/{id}').json()
+    return render_template('job.html', job=job)

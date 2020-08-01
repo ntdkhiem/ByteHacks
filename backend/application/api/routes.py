@@ -18,10 +18,10 @@ def jobs():
         return f"An Error Occured: {e}"
 
 
-@api.route('/job/<int:id>', methods=['GET', 'POST'])
-def job(id):
+@api.route('/job/<string:job_id>', methods=['GET', 'POST'])
+def job(job_id):
     if request.method == 'GET':
-        todo = jobs_ref.document(todo_id).get()
+        todo = jobs_ref.document(job_id).get()
         return jsonify(todo.to_dict()), 200
     else:
         # user signed up for this job
