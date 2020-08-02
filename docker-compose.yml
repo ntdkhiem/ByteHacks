@@ -7,19 +7,19 @@ networks:
 services:
     stjk:
         build:
-            context: ./backend
-        command: python manage.py run -h 0.0.0.0 -p 80 --with-threads
+            context: ./backend/web
+        command: python manage.py run -h 0.0.0.0 -p 80
         ports: 
             - 80:80
         env_file:
             - ./.env
         volumes:
-            - ./backend:/usr/src/app
+            - ./backend/web:/usr/src/app
         depends_on:
-            - db
+            - users_db
         networks: 
             - local-network
-    db:
+    users_db:
         image: postgres:12-alpine
         volumes:
             - postgres_data:/var/lib/postgresql/data/
@@ -29,6 +29,19 @@ services:
             - POSTGRES_DB=stjk_bytehacks
         networks:
             - local-network
+    api:
+        build:
+            context: ./backend/api
+        command: python app.py
+        expose: 
+            - 5000
+        env_file: 
+            - ./.env
+        volumes:
+            - ./backend/api:/usr/src/app
+        networks: 
+            - local-network
+        
 
 volumes:
     postgres_data:
