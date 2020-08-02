@@ -14,15 +14,3 @@ def create_user(form):
     )
     user.set_password(form.password.data)
     return user
-
-# def create_sample_user():
-#     user = User(
-#         first_name='Kevin',
-#         last_name='Nguyen',
-#         dob=datetime.now(),
-#         gender=Gender.MALE,
-#         location='ma',
-#         email='ppkhiemnguyen@gmail.com'
-#     )
-#     user.set_password('12345')
-#     return user
