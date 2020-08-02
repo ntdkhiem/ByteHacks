@@ -1,17 +1,18 @@
 import click
-from flask.cli import with_appcontext
+from flask.cli import FlaskGroup
 from application import create_app, db
 from application.models import User, Gender
 
-app = create_app()
+cli = FlaskGroup(create_app=create_app)
 
-@app.cli.command('init-db')
-# @with_appcontext
-def init_db_command():
+@cli.command('create_db')
+def create_db():
+    db.drop_all()
     db.create_all()
+    db.session.commit()
     click.echo('Initialized database')
 
-@app.cli.command('create-user')
+@cli.command('create_user')
 @click.argument('email') 
 @click.argument('password') 
 def create_user(email, password):
@@ -21,7 +22,8 @@ def create_user(email, password):
         # dob=datetime.now(),
         gender=Gender.MALE,
         location='ma',
-        email=email
+        email=email,
+        jobs=['t','h'],
     )
     u.set_password(password)
     db.session.add(u)
@@ -29,11 +31,9 @@ def create_user(email, password):
     click.echo(f'Added {email} to the database')
 
 
-    
-
-@app.shell_context_processor
-def make_shell_context():
-    return {'db': db, 'User': User, 'Gender': Gender}
+# @app.shell_context_processor
+# def make_shell_context():
+#     return {'db': db, 'User': User, 'Gender': Gender}
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    cli()
