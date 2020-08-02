@@ -1,0 +1,18 @@
+{% from '_formhelpers.html' import render_field %}
+{% extends "_base.html" %}
+
+{% block title %}
+Sign In
+{% endblock %}
+
+
+{% block content %}
+    <h1>Sign In</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        {{ render_field(form.email) }}
+        {{ render_field(form.password) }}
+        {{ form.submit() }}
+    </form>
+    <p>New User? <a href="{{ url_for('Home.register') }}">Click to Register!</a></p>
+{% endblock %}
