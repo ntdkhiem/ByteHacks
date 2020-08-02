@@ -1,0 +1,145 @@
+body {
+	padding: 0;
+	margin: 0;
+	background: #F5FBFB;
+}
+
+/* nav bar */
+.navbar {
+	background: #AF9164;
+  
+}
+.nav-link,
+.navbar-brand {
+	color: #FFFFFA;
+	cursor: pointer;
+}
+.nav-link {
+	margin-right: 1em !important;
+}
+.nav-link:hover {
+	color: #2D936C;
+}
+.navbar-collapse {
+	justify-content: flex-end;
+}
+
+/* header */
+.header {
+  /* there's 2 pictures in the images folder for the background, what do u guys prefer, either of these or another picture?*/
+	background-image: url('images/men-working-1930.jpg');
+	background-size: cover;
+	background-position: center;
+	position: relative;
+}
+.overlay {
+	position: absolute;
+	min-height: 100%;
+	min-width: 100%;
+	left: 0;
+	top: 0;
+	background: rgba(0, 0, 0, 0.7);
+}
+.submit {
+	left: 50%;
+	position: absolute;
+    top: 50%;
+    width:50%;
+	transform: translate(-50%, -55%);
+    text-align: center;
+    background-color:#AF9164;
+}
+.submit h1 {
+	color: #1B9AAA;
+}
+.submit p {
+	color: #FFFFFA;
+	font-size: 1.3rem;
+	line-height: 1.5;
+}
+.submit button {
+	border: 1px solid #1B9AAA;
+	background: #1B9AAA;
+	border-radius: 0;
+	color: #FFFFFA;
+}
+.submit button:hover {
+	border: 1px solid #FFFFFA;
+	background: #FFFFFA;
+	color: #000;
+}
+
+/* feature */
+.features {
+	margin: 4em auto;
+	padding: 1em;
+	position: relative;
+}
+.feature-title {
+	color: #333;
+	font-size: 1.3rem;
+	font-weight: 700;
+	margin-bottom: 20px;
+	text-transform: uppercase;
+}
+.features img {
+	-webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+	-moz-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+	box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+	margin-bottom: 16px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+.features .form-control,
+.features input {
+	border-radius: 0;
+}
+.feature-title {
+	text-align: center;
+	margin-top: 20px;
+}
+.features .btn:hover {
+	background-color: #333;
+	border: 1px solid #333;
+}
+
+/*--- input boxes ---*/
+input{
+    width: 30%;
+}
+.login:hover{
+    color:white;
+}
+
+/*--- footer ---*/
+.page-footer {
+	background-color: #1F271B;
+	color: #FFFFFA;
+	padding: 60px 0 30px;
+}
+.footer-copyright {
+	color: #666;
+	padding: 40px 0;
+}
+
+/* media queries */
+@media (max-width: 480px) {
+	.description {
+		left: 0;
+		padding: 0 15px;
+		position: absolute;
+		top: 10%;
+		transform: none;
+		text-align: center;
+	}
+	.description h1 {
+		font-size: 2em;
+	}
+	.description p {
+		font-size: 1.2rem;
+	}
+	.features {
+		margin: 0;
+	}
+}
