@@ -23,7 +23,7 @@ def create_user(email, password):
         gender=Gender.MALE,
         location='ma',
         email=email,
-        jobs=['t','h'],
+        jobs=[],
     )
     u.set_password(password)
     db.session.add(u)
