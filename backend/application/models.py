@@ -2,6 +2,7 @@ import enum
 from datetime import datetime
 
 from flask_login import UserMixin
+from sqlalchemy import ARRAY
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from application import db, login
@@ -14,6 +15,8 @@ class Gender(enum.Enum):
 
 
 class User(UserMixin, db.Model):
+    __tablename__ = 'users'
+
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(15), index=True, nullable=False)
     last_name = db.Column(db.String(15), index=True, nullable=False)
@@ -22,6 +25,7 @@ class User(UserMixin, db.Model):
     dob = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     gender = db.Column(db.Enum(Gender), nullable=False)
     location = db.Column(db.String())
+    jobs = db.Column(ARRAY(db.String))
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
