@@ -24,12 +24,7 @@ Dashboard
                 None
             {% endif %}
         </p>
-        <a 
-            href="{{ url_for('Dashboard.job', id=job['id']) }}"
-            id="btnInfo"
-        >
-        More Info
-        </a>
+        <p>Info: {{job['info']}}</p>
         <button id="btnRegister">Sign up</button>
     </div>
     <hr>
@@ -37,4 +32,8 @@ Dashboard
 {% else %}
 <div>There are no jobs available...</div>
 {% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
 {% endblock %}

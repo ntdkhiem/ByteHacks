@@ -21,8 +21,15 @@ def jobs():
 @api.route('/job/<string:job_id>', methods=['GET', 'POST'])
 def job(job_id):
     if request.method == 'GET':
-        todo = jobs_ref.document(job_id).get()
-        return jsonify(todo.to_dict()), 200
+        job = jobs_ref.document(job_id).get()
+        return jsonify(job.to_dict()), 200
     else:
-        # user signed up for this job
-        pass
+        # decrement total_workers when user signed up
+        try:
+            job = jobs_ref.document(job_id)
+            total_workers = job.get().get('total_workers')
+            job.update({'total_workers': total_workers - 1})
+        except Exception as e:
+            return f"An Error occured: {e}"        
+        finally:
+            return {}, 200
