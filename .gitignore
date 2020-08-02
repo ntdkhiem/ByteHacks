@@ -140,3 +140,5 @@ cython_debug/
 # Others
 .vscode/
 *.db
+todo
+bfk.json
