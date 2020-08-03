@@ -10,8 +10,7 @@
 
 ### Notes
 - You need to have [Docker](https://docker.com/gettingstarted) installed
-- You need Firebase service account key
-- You need to create `.env` file
+- You need to create a [Firebase](https://firebase.google.com/) project and get its [service account key](https://console.firebase.google.com/u/0/project/_/settings/serviceaccounts)
 
 ### How to run
 1. Rename your firebase service account key to `bfk.json`
@@ -21,4 +20,3 @@
 3. Make sure you have `.env` in the repository's root folder
 
 4. Execute: `docker-compose up`
-
