@@ -10,18 +10,19 @@ socketio.on('connect', () => {
         myJobs = document.querySelector('#myJobs')
         // initialization
         card = document.createElement('div')
-        card.classList.add('card mb-1')
+        card.classList.add('card','mb-1')
         cardHeader = document.createElement('div')
         cardHeader.classList.add('card-header')
         cardFlex = document.createElement('div')
-        cardFlex.classList.add('d-flex justify-content-between')
+        cardFlex.classList.add('d-flex','justify-content-between')
         span1 = document.createElement('span')
         p1 = document.createElement('p')
-        p1.classList.add('h4 font-bold text-capitalize')
-        p1.text = data.name
+        p1.classList.add('h4','font-bold','text-capitalize')
+        p1.textContent = data.name
         span2 = document.createElement('span')
+        p2 = document.createElement('p')
         p2.classList.add('h3')
-        p2.text = data.salary
+        p2.textContent = '$'+ data.salary
 
         // wire it up
         span1.appendChild(p1)
@@ -57,11 +58,7 @@ document.querySelectorAll('#btnRegister').forEach(btn => {
         cardID = e.target.parentNode.parentNode.parentNode.id
         fetch(`http://localhost/dashboard/job/${cardID}`, {
             method: 'post'
-        }).then(res => res.json())
-        .then(data => {
-            console.log(data)
-            console.log('Signed UP')
-        })
+        }).then(res => res.status_code == 200)
         .catch(err => {
             console.error(err)
         })
