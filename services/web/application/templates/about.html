@@ -5,51 +5,81 @@ About Us
 {% endblock %}
 
 {% block content %}
-<h3 class="feature-title">Our Mission</h3>
-<div id="staticmsg">
-    <p>The Great Depression was a drastic economic catastrophe that took place in the 1930s as a result of a huge stock
-        market crash, causing several dreadful consequences that resulted in sky-high unemployment rates globally. Banks
-        failed, investors were wiped out, and over 15 million Americans were left jobless. Those who were able to keep
-        their job earned a much lower salary, and many descended into debt, resulting in states of absolute poverty.
+<div class="container" style="margin-top: 20vh;">
+    <div class="row">
+        <div class="col-5 d-md-none d-lg-block">
+            <img src="{{ url_for('static', filename='images/bytehacks-logo.jpg') }}" class="img-fluid mt-2">
+        </div>
+        <div class="col-12 col-lg-6">
+            <h3 class="feature-title">Our Mission</h3>
+            <p>The Great Depression was a drastic economic catastrophe that took place in the 1930s as a result of a huge
+                stock
+                market crash, causing several dreadful consequences that resulted in sky-high unemployment rates globally.
+                Banks
+                failed, investors were wiped out, and over 15 million Americans were left jobless. Those who were able to
+                keep
+                their job earned a much lower salary, and many descended into debt, resulting in states of absolute poverty.
+            </p>
+            <p>
+                But what if the technology present today was available in that period of history? The search for jobs would
+                have
+                been so much easier nationwide. Helploy is a website designed to help the economic situation by alleviating
+                the
+                severity of unemployment. Helploy allows the input of one’s personal information through their own personal
+                account, which contains important information such as location, job desired, previous experience, etc.
+                Helploy
+                also takes into consideration various discriminatory factors that were prevalent back then, such as gender
+                and
+                race. Based on all this information, Helploy matches the job-seeker to a job, thereby increasing the chances
+                of
+                employment.
+            </p>
+            <p>
+                The ongoing global pandemic has caused increasing rates of unemployment, resulting in the financial
+                instability
+                of many households. Not surprisingly, the applications of Helploy are still relevant today.
+            </p>
+        </div>
+    </div>
+    <p class="text-center text-muted">
+        Helploy was created as a product of
+        <a href="bytehacks.tech" , target="_blank">
+            ByteHacks 2020
+        </a>
+        , an online hackathon.
     </p>
-    <p>
-        But what if the technology present today was available in that period of history? The search for jobs would have
-        been so much easier nationwide. Helploy is a website designed to help the economic situation by alleviating the
-        severity of unemployment. Helploy allows the input of one’s personal information through their own personal
-        account, which contains important information such as location, job desired, previous experience, etc. Helploy
-        also takes into consideration various discriminatory factors that were prevalent back then, such as gender and
-        race. Based on all this information, Helploy matches the job-seeker to a job, thereby increasing the chances of
-        employment.
-    </p>
-    <p>
-        The ongoing global pandemic has caused increasing rates of unemployment, resulting in the financial instability
-        of many households. Not surprisingly, the applications of Helploy are still relevant today.
-    </p>
-    <p>
-        Helploy was created as a product of ByteHacks, an online hackathon.
-    </p>
-    <hr />
-    <h3 class="feature-title">Our Team</h3>
-    <h2 class="bios">Julia Ding</h2>
-    <p>Julia is a rising high school sophomore in Texas. Having been fortunate enough to have had a relatively early
-        exposure to computer science, she has taken a great interest in the subject and has been deeply involved in it
-        ever since. She enjoys participating in hackathons as well as meeting and collaborating with new people. Julia
-        is an avid learner and is also always up for a challenge! She helped develop the frontend of the website,
-        including the Home and About Us pages.</p>
-    <h2 class="bios">Khiem Nguyen</h2>
-    <p>Khiem is a rising senior in high school who loves programming and would spend days learning new tools and
-        technologies in the world of software development. He contributed to the site by designing and creating a
-        containerized, fully functional backend integrated with database for user account system in addition with
-        database hosted on the cloud for job applications which for the purpose of real-time updating.</p>
-    <h2 class="bios">Sianna Xiao</h2>
-    <p>Sianna is a rising high school senior in Southern California. She loves working on the intersection of STEM and
-        society and strives to find connections across multiple disciplines in computer science and technology. Sianna
-        loves meeting new people and is very happy that she was able to bring a wonderful team together to work on this
-        project. She enjoyed taking part in designing the logo, UI/UX, and frontend development of this website.
-    </p>
-    <h2 class="bios">Tanisha Kore</h2>
-    <p>Tanisha is a rising senior in high school who is passionate about computer science and its interdisciplinary use.
-        She enjoys coding side projects and participating in hackathons to broaden her skillset. Tanisha contributed to
-        this site by assisting with the development of the home page and creating the Create An Account/Login page.</p>
+    <div id="staticmsg">
+        <hr />
+        <h3 class="feature-title">Our Team</h3>
+        <h2 class="bios">Julia Ding</h2>
+        <p>Julia is a rising high school sophomore in Texas. Having been fortunate enough to have had a relatively early
+            exposure to computer science, she has taken a great interest in the subject and has been deeply involved in
+            it
+            ever since. She enjoys participating in hackathons as well as meeting and collaborating with new people.
+            Julia
+            is an avid learner and is also always up for a challenge! She helped develop the frontend of the website,
+            including the Home and About Us pages.</p>
+        <h2 class="bios">Khiem Nguyen</h2>
+        <p>Khiem is a rising senior in high school who loves programming and would spend days learning new tools and
+            technologies in the world of software development. He contributed to the site by designing and creating a
+            containerized, fully functional backend integrated with database for user account system in addition with
+            database hosted on the cloud for job applications which for the purpose of real-time updating.</p>
+        <h2 class="bios">Sianna Xiao</h2>
+        <p>Sianna is a rising high school senior in Southern California. She loves working on the intersection of STEM
+            and
+            society and strives to find connections across multiple disciplines in computer science and technology.
+            Sianna
+            loves meeting new people and is very happy that she was able to bring a wonderful team together to work on
+            this
+            project. She enjoyed taking part in designing the logo, UI/UX, and frontend development of this website.
+        </p>
+        <h2 class="bios">Tanisha Kore</h2>
+        <p>Tanisha is a rising senior in high school who is passionate about computer science and its interdisciplinary
+            use.
+            She enjoys coding side projects and participating in hackathons to broaden her skillset. Tanisha contributed
+            to
+            this site by assisting with the development of the home page and creating the Create An Account/Login page.
+        </p>
+    </div>
 </div>
 {% endblock %}
