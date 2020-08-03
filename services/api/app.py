@@ -19,17 +19,28 @@ socketio = SocketIO(app)
 # Subscribe for changes in firestore database
 def on_snapshot(doc_snapshot, changes, read_time):
     '''
-    Send socket.io message when a change happens in firestore
+    Send socket.io message to all clients
+    when a change happens in firestore
     '''
-    for doc in doc_snapshot:
-        print(doc)
-        send('New changes in firestore', broadcast=True)
+    if len(changes) == 1:
+        documentChange = changes[0]
+        documentSnapShot = documentChange.document
+        payload = {
+            'id': documentSnapShot.id,
+        }
+        # if job is full
+        if documentSnapShot.get('total_workers') <= 0:
+            jobs_ref.document(documentSnapShot.id).update({'is_full': True})
+            payload['is_full'] = True
+
+        print("[+] CHANGES: ", changes[0].document.to_dict())
+        payload['total_workers'] = documentSnapShot.get('total_workers')
+        socketio.emit('message', {payload}, broadcast=True)
 
 # Socket.io messages
 @socketio.on('connect')
 def on_connect():
-    print('[+] Received new connection')
-    send({'status': 'ok'}, broadcast=True) 
+    send({}, broadcast=True) 
 
 
 @app.route('/jobs', methods=['GET'])
@@ -40,10 +51,11 @@ def jobs():
     try:
         jobs = []
         for doc in jobs_ref.stream():
-            job = {}
-            job['id'] = doc.id 
-            job.update(doc.to_dict())
-            jobs.append(job)
+            if not doc.get('is_full'):
+                job = {}
+                job['id'] = doc.id 
+                job.update(doc.to_dict())
+                jobs.append(job)
         return jsonify(jobs), 200
     except Exception as e:
         return f"An Error Occured: {e}"
@@ -72,4 +84,8 @@ def job(job_id):
             return {}, 200
 
 if __name__ == "__main__":
+    # Establish a watcher for Firestore changes
+    # jobs_ref.on_snapshot(on_snapshot)
+    socketio.start_background_task(jobs_ref.on_snapshot, on_snapshot)
+
     socketio.run(app, host='0.0.0.0', port=5000)
