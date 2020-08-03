@@ -6,11 +6,12 @@ Dashboard
 {% endblock %}
 
 {% block content%}
-<h1 class="mb-5 text-center">Welcome {{current_user.first_name}}</h1>
-<p class="h3 my-3">Here are current jobs that you are taking:</p>
-<hr>
-<div id="myJobs">
-    {% if my_job_ids|length != 0 %}
+<div class="container-fluid" style="margin-top: 5vh; margin-bottom:10vh;">
+    <h1 class="mb-5 text-center">Welcome to the start of your career, {{current_user.first_name}}!</h1>
+    <p class="h3 my-3">Here are current jobs that you are taking:</p>
+    <hr>
+    <div id="myJobs">
+        {% if my_job_ids|length != 0 %}
         {% for id in my_job_ids %}
         <div class="card mb-1">
             <div class="card-header">
@@ -21,17 +22,17 @@ Dashboard
                     <span>
                         <p class="h3">${{jobs[id]['salary']}}</p>
                     </span>
-                </div>            
+                </div>
             </div>
         </div>
         {% endfor %}
-    {% endif %}
-</div>
+        {% endif %}
+    </div>
 
-{% if jobs %}
-    <p class="h3 mt-3">Jobs Available:</p>
+    {% if jobs %}
+    <p class="h3 mt-5">Jobs Available:</p>
     <div class="row">
-    {% for id, job in jobs.items() %}
+        {% for id, job in jobs.items() %}
         {% if not id in my_job_ids %}
         <div class="col-6 mb-3">
             <div class="card" id="{{id}}">
@@ -43,22 +44,23 @@ Dashboard
                     </div>
                     <p class="lead">
                         {% if job['location'] == 'ma' %}
-                            Massachusetts
+                        Massachusetts
                         {% elif job['location'] == 'ny' %}
-                            New York
+                        New York
                         {% elif job['location'] == 'ca' %}
-                            California
+                        California
                         {% else %}
-                            None
+                        None
                         {% endif %}
                     </p>
                     <p>
-                        <a class="card-link" data-toggle="collapse" href="#job{{id}}" role="button" aria-expanded="false" aria-controls="job{{id}}">
+                        <a class="card-link" data-toggle="collapse" href="#job{{id}}" role="button"
+                            aria-expanded="false" aria-controls="job{{id}}">
                             More Info
                         </a>
                     </p>
                     <div class="collapse" id="job{{id}}">
-                            <p class="card-text">{{ job['info'] }}</p>
+                        <p class="card-text">{{ job['info'] }}</p>
                     </div>
                     <div class="d-flex justify-content-between">
                         <button id="btnRegister" class="btn btn-primary">Sign Up</button>
@@ -73,11 +75,12 @@ Dashboard
             </div>
         </div>
         {% endif %}
-    {% endfor %}
+        {% endfor %}
     </div>
-{% else %}
-<p class="h3">There are no jobs available...</p>
-{% endif %}
+    {% else %}
+    <p class="h3">There are no jobs available...</p>
+    {% endif %}
+</div>
 {% endblock %}
 
 {% block scripts %}
