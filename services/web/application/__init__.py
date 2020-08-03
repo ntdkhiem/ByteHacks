@@ -18,18 +18,22 @@ def create_app() -> Flask:
 
     app.config.from_object(Config)
 
+    # SQLAlchemy Initialization
     db.init_app(app)
 
+    # Flask-login Initialization
     login.init_app(app)
+    # Define endpoint to redirect when user try 
+    # to access authenticated pages without
+    # authenticate
     login.login_view = 'Home.login'
 
+    # Define routes for flask app
     with app.app_context():
         from application.home import home as home_bp
         from application.dashboard import dashb as dashboard_bp
         
         app.register_blueprint(home_bp)
         app.register_blueprint(dashboard_bp, url_prefix='/dashboard')
-
-        db.create_all()
 
     return app

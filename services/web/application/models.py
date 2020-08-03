@@ -17,7 +17,9 @@ class Gender(enum.Enum):
 class User(UserMixin, db.Model):
     '''
     User Model
-        - Might only works for PostgreSQL
+        - NOTE: one column has an array of strings
+                which some databases might not supported
+                (i.e Sqlite)
     '''
     __tablename__ = 'users'
 

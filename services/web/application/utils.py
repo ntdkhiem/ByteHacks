@@ -6,7 +6,7 @@ from .models import User, Gender
 
 def create_user(form: FlaskForm) -> User:
     '''
-    Create a User instance based on given form
+    Create a User model based on given form
     '''
     user = User(
         first_name=form.first_name.data,

@@ -21,7 +21,6 @@ def index():
     my_jobs = []
     my_job_ids: list = current_user.jobs
     for jid in my_job_ids:
-        print(jid)
         job = requests.get(f'http://api:5000/job/{id}').json()
         if job:
             my_jobs.append(job)
