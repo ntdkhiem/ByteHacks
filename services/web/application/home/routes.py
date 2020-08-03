@@ -51,6 +51,7 @@ def logout():
     '''
     # log out user session if existed
     logout_user()
+    flash('You Logged out')
     return redirect(url_for('.index'))
 
 
