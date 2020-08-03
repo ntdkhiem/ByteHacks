@@ -24,7 +24,7 @@ class RegistrationForm(FlaskForm):
     last_name = StringField('Last Name', validators=[Required()])
     # dob = DateField('Date Of Birth')])
     dob = StringField('Date Of Birth (don\'t fill this)')
-    gender = RadioField('Gender',
+    gender = SelectField('Gender',
                         choices=[
                             ('MALE', 'Male'),
                             ('FEMALE', 'Female'),

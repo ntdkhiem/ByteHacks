@@ -4,6 +4,13 @@ body {
 	background: #F5FBFB;
 }
 
+/* Alert */
+.alert {
+	position: fixed;
+	z-index: 1;
+	width: 100%;
+}
+
 /* nav bar */
 .navbar {
 	background: #AF9164;

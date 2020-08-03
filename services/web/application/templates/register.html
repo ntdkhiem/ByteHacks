@@ -7,17 +7,33 @@ Register
 
 
 {% block content %}
-    <h1>Sign Up</h1>
-    <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
-        {{ render_field(form.first_name) }}
-        {{ render_field(form.last_name) }}
-        {{ render_field(form.dob) }}
-        {{ render_field(form.gender) }}
-        {{ render_field(form.location) }}
-        {{ render_field(form.email) }}
-        {{ render_field(form.password) }}
-        {{ render_field(form.password2) }}
-        {{ form.submit() }}
-    </form>
+    <div class="register">
+        <form action="" method="post" novalidate>
+            <h1>Sign Up</h1>
+            {{ form.hidden_tag() }}
+            <div class="row">
+                <div class="col">
+                    {{ render_field(form.first_name) }}
+                </div>
+                <div class="col">
+                    {{ render_field(form.last_name) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    {{ render_field(form.dob) }}
+                </div>
+                <div class="col">
+                    {{ render_field(form.gender) }}
+                </div>
+                <div class="col">
+                    {{ render_field(form.location) }}
+                </div>
+            </div>
+            {{ render_field(form.email) }}
+            {{ render_field(form.password) }}
+            {{ render_field(form.password2) }}
+            {{ form.submit(class_="align-items") }}
+        </form>
+    </div>
 {% endblock %}
