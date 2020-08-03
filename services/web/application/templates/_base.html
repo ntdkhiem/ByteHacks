@@ -73,12 +73,12 @@
             >
           </li>
           {% else %}
-          <li class="nav-item">
-            <p>{{ current_user.first_name }}</p>
-          </li>
-          <li class="nav-item">
-            <a href="{{ url_for('Home.logout') }}" class="nav-link">Logout</a>
-          </li>
+			<li class="nav-item">
+			  <a href="{{ url_for('Home.logout') }}" class="nav-link">Logout</a>
+			</li>
+			<li class="nav-item">
+				<button class="btn btn-outline-light">{{ current_user.first_name }}</button>
+			</li>
           {% endif %}
         </ul>
       </div>
