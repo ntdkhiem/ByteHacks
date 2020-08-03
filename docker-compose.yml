@@ -4,6 +4,7 @@ networks:
     local-network:
         driver: bridge
 
+
 services:
     stjk:
         build:
@@ -44,6 +45,7 @@ services:
             - 80:80
         depends_on: 
             - stjk
+            - api
         networks:
             - local-network
         
