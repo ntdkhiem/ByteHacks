@@ -17,15 +17,8 @@ def index():
     '''
     jobs: Response = requests.get('http://api:5000/jobs').json()
 
-    # get my job ids from postgresql then get those jobs from firestore
-    my_jobs = []
     my_job_ids: list = current_user.jobs
-    for jid in my_job_ids:
-        job = requests.get(f'http://api:5000/job/{id}').json()
-        if job:
-            my_jobs.append(job)
-
-    return render_template('dashboard.html', my_jobs=my_jobs, jobs=jobs)
+    return render_template('dashboard.html', my_job_ids=my_job_ids, jobs=jobs)
 
 @dashb.route('/job/<string:id>', methods=['GET', 'POST'])
 @login_required

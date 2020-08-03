@@ -6,47 +6,82 @@ Dashboard
 {% endblock %}
 
 {% block content%}
-<h1>Hello {{ current_user.first_name }}, This is a dashboard</h1>
-{% if my_jobs %}
-<div>Here are current jobs that you are taking</div>
-<ul>
-    {% for job in my_jobs %}
-    {{render_my_job(job)}} 
-    {% endfor %}
-</ul>
-{% else %}
-<div class="">You currently have not sign up for any job</div>
-{% endif %}
+<h1 class="mb-5 text-center">Welcome {{current_user.first_name}}</h1>
+<p class="h3 my-3">Here are current jobs that you are taking:</p>
+<hr>
+<div id="myJobs">
+    {% if my_job_ids|length != 0 %}
+        {% for id in my_job_ids %}
+        <div class="card mb-1">
+            <div class="card-header">
+                <div class="d-flex justify-content-between">
+                    <span>
+                        <p class="h4 font-bold text-capitalize">{{jobs[id]['name']}}</p>
+                    </span>
+                    <span>
+                        <p class="h3">${{jobs[id]['salary']}}</p>
+                    </span>
+                </div>            
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+</div>
+
 {% if jobs %}
-    {% for job in jobs %}
-    <div id="{{job['id']}}">
-        <p class='name'>Name: {{job['name']}}</p>
-        <p class='salary'>Salary: {{job['salary']}}</p>
-        <p class='gender'>For: {{ job['gender']|join(',') }}</p>
-        <p class='workers'>Workers needed: {{job['total_workers']}}</p>
-        <p class='fow'>Field of work: {{job['fow']}}</p>
-        <p class='location'>Location:
-            {% if job['location'] == 'ma' %}
-                Massachusetts
-            {% elif job['location'] == 'ny' %}
-                New York
-            {% elif job['location'] == 'ca' %}
-                California
-            {% else %}
-                None
-            {% endif %}
-        </p>
-        <p class='info'>Info: {{job['info']}}</p>
-        <button id="btnRegister">Sign up</button>
-    </div>
-    <hr>
+    <p class="h3 mt-3">Jobs Available:</p>
+    <div class="row">
+    {% for id, job in jobs.items() %}
+        {% if not id in my_job_ids %}
+        <div class="col-6 mb-3">
+            <div class="card" id="{{id}}">
+                <h5 class="card-header text-capitalize">{{ job['fow'] }}</h5>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="card-title text-capitalize">{{ job['name'] }}</h5>
+                        <p class="h3">${{ job['salary'] }}</p>
+                    </div>
+                    <p class="lead">
+                        {% if job['location'] == 'ma' %}
+                            Massachusetts
+                        {% elif job['location'] == 'ny' %}
+                            New York
+                        {% elif job['location'] == 'ca' %}
+                            California
+                        {% else %}
+                            None
+                        {% endif %}
+                    </p>
+                    <p>
+                        <a class="card-link" data-toggle="collapse" href="#job{{id}}" role="button" aria-expanded="false" aria-controls="job{{id}}">
+                            More Info
+                        </a>
+                    </p>
+                    <div class="collapse" id="job{{id}}">
+                            <p class="card-text">{{ job['info'] }}</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button id="btnRegister" class="btn btn-primary">Sign Up</button>
+                        <p>
+                            Workers:
+                            <span class="nw">{{job['needed_workers']}}</span>
+                            /
+                            <span class="tw">{{job['total_workers']}}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
     {% endfor %}
+    </div>
 {% else %}
-<div>There are no jobs available...</div>
+<p class="h3">There are no jobs available...</p>
 {% endif %}
 {% endblock %}
 
 {% block scripts %}
+{{ super() }}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
 {% endblock %}
