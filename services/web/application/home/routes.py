@@ -17,6 +17,14 @@ def index():
     return render_template('index.html')
 
 
+@home.route('/about')
+def about():
+    '''
+    About us page
+    '''
+    return render_template('about.html')
+
+
 @home.route('/login', methods=['GET', 'POST'])
 def login():
     '''
