@@ -24,18 +24,27 @@ body {
 }
 /* account form */
 form {
-  width: 40%;
+  /* width: 40%; */
   display: inline-block;
   text-align: left;
-  background-color: #af9164;
-  border: 5px solid #af9164;
-  border-radius: 5%;
+  /* background-color: #af9164; */
+  z-index:1;
+  /* border: 5px solid #af9164; */
+  /* border-radius: 5%; */
+}
+form label {
+  color: #FFFFFA;
+}
+form input[type='submit'] {
+  margin-top: 10px;
+  padding: 10px 20px;
 }
 form h1 {
-	text-align: center !important;
+  text-align: center !important;
 }
 form p {
-	color: white;
+  margin-top: 20px;
+	color: #FFFFFA;
 	text-align: center;
 }
 .register {
@@ -50,8 +59,16 @@ form p {
   text-align: center;
   height: 100vh;
 }
+.register::after{
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-color: rgba(31, 39, 27, 0.6);
+  z-index: inherit;
+}
 .register h1 {
-  color: #1b9aaa;
+  color: #19b9ce;
 }
 li {
   text-decoration: none;
