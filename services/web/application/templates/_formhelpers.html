@@ -1,17 +1,13 @@
 {% macro render_field(field) %}
-{{ field.label }}
-<div class="input-group">
-  {% if field.label == 'Date Of Birth' %}
-  {{ field(class_="form-control", type="date")}}
-  {% else %}
-  {{ field(class_="form-control")}}
-  {% endif %}
-  <ul>
+  {{ field.label }}
+  <div class="input-group">
+    {% if field.label == 'Date Of Birth' %}
+    {{ field(class_="form-control", type="date")}}
+    {% else %}
+    {{ field(class_="form-control")}}
+    {% endif %}
     {% for error in field.errors %}
-    <li >
-      {{ error }}
-    </li>
+    <div class="invalid-feedback">{{ error }}</div>
     {% endfor %}
-  </ul>
-</div>
+  </div>
 {% endmacro %}

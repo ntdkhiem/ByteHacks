@@ -8,17 +8,11 @@ Sign In
 
 {% block content %}
     <div class="register">
-        <form action="" method="post" novalidate>
+        <form class="needs-validation" action="" method="post" novalidate>
             <h1>Sign In</h1>
             {{ form.hidden_tag() }}
-            <div class="form-group">
-                {{ form.email.label}}
-                {{ form.email(class_="form-control", placeholder="Enter your email") }}
-            </div>
-            <div class="form-group">
-                {{ form.password.label}}
-                {{ form.password(class_="form-control", placeholder="Password") }}
-            </div>
+            {{render_field(form.email)}}
+            {{render_field(form.password)}}
             {{ form.submit() }}
             <p>New User? <a href="{{ url_for('Home.register') }}">Click to Register!</a></p>
         </form>
