@@ -11,10 +11,11 @@ def create_user(form: FlaskForm) -> User:
     user = User(
         first_name=form.first_name.data,
         last_name=form.last_name.data,
-        # dob=form.dob.data,
+        dob=form.dob.data,
         gender=form.gender.data,
         location=form.location.data,
         email=form.email.data,
+        jobs=[],
     )
     user.set_password(form.password.data)
     return user

@@ -3,11 +3,11 @@ from wtforms import (
     StringField, 
     PasswordField, 
     BooleanField, 
-    DateField,
     RadioField,
     SelectField,
     SubmitField,
 )
+from wtforms.fields.html5 import DateField
 from wtforms.validators import ValidationError, Email, EqualTo, Required
 
 from application.models import User, Gender
@@ -23,7 +23,8 @@ class RegistrationForm(FlaskForm):
     first_name = StringField('First Name', validators=[Required()])
     last_name = StringField('Last Name', validators=[Required()])
     # dob = DateField('Date Of Birth')])
-    dob = StringField('Date Of Birth (don\'t fill this)')
+    dob = DateField('Date Of Birth', validators=[Required()], format='%Y-%m-%d')
+
     gender = SelectField('Gender',
                         choices=[
                             ('MALE', 'Male'),
