@@ -29,12 +29,12 @@ def on_snapshot(doc_snapshot, changes, read_time):
             'id': documentSnapShot.id,
         }
         # if job is full
-        if documentSnapShot.get('total_workers') <= 0:
+        if documentSnapShot.get('total_workers') == documentSnapShot.get('needed_workers'):
             jobs_ref.document(documentSnapShot.id).update({'is_full': True})
             payload['is_full'] = True
 
         print("[+] CHANGES: ", changes[0].document.to_dict())
-        payload['total_workers'] = documentSnapShot.get('total_workers')
+        payload['needed_workers'] = documentSnapShot.get('needed_workers')
         socketio.emit('message', {payload}, broadcast=True)
 
 # Socket.io messages
@@ -49,13 +49,10 @@ def jobs():
     Returns a json list of jobs available in Firestore
     '''
     try:
-        jobs = []
+        jobs = {} 
         for doc in jobs_ref.stream():
             if not doc.get('is_full'):
-                job = {}
-                job['id'] = doc.id 
-                job.update(doc.to_dict())
-                jobs.append(job)
+                jobs[doc.id] = doc.to_dict()
         return jsonify(jobs), 200
     except Exception as e:
         return f"An Error Occured: {e}"
@@ -76,8 +73,29 @@ def job(job_id):
         # decrement total_workers when user signed up
         try:
             job = jobs_ref.document(job_id)
-            total_workers = job.get().get('total_workers')
-            job.update({'total_workers': total_workers - 1})
+            needed_workers = job.get().get('needed_workers')
+            needed_workers += 1
+            job.update({'needed_workers': needed_workers})
+
+            payload = {
+                'id':job_id,
+            }
+
+            # Reject any more applications when the job is full
+            if job.get().get('total_workers') == job.get().get('needed_workers'):
+                job.update({'is_full': True})
+                payload['is_full'] = True
+
+            # send a live update to every clients
+            payload['needed_workers'] = needed_workers
+            socketio.send(payload, broadcast=True) 
+
+            # Send an update to notify the client that the registration
+            # is completed 
+            name = job.get().get('name')
+            salary = job.get().get('salary')
+            socket.emit('registered', {'name': name, 'salary': salary}, room=request.sid)
+
         except Exception as e:
             return f"An Error occured: {e}"        
         finally:
