@@ -7,14 +7,12 @@ networks:
 services:
     stjk:
         build:
-            context: ./backend/web
-        command: python manage.py run -h 0.0.0.0 -p 80
-        ports: 
-            - 80:80
+            context: ./services/web
+        command: python manage.py run -h 0.0.0.0 -p 5000
+        expose: 
+            - 5000
         env_file:
             - ./.env
-        volumes:
-            - ./backend/web:/usr/src/app
         depends_on:
             - users_db
         networks: 
@@ -31,15 +29,22 @@ services:
             - local-network
     api:
         build:
-            context: ./backend/api
+            context: ./services/api
         command: python app.py
         expose: 
             - 5000
         env_file: 
             - ./.env
-        volumes:
-            - ./backend/api:/usr/src/app
         networks: 
+            - local-network
+    nginx:
+        build: 
+            context: ./services/nginx
+        ports:
+            - 80:80
+        depends_on: 
+            - stjk
+        networks:
             - local-network
         
 

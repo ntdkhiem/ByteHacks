@@ -1,0 +1,13 @@
+version: '3.8'
+
+networks:
+    local-network:
+        driver: bridge
+
+services:
+    stjk:
+        volumes:
+            - ./services/web:/usr/src/app
+    api:
+        volumes:
+            - ./services/api:/usr/src/app
