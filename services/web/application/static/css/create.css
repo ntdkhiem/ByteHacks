@@ -1,0 +1,87 @@
+body {
+	padding: 0;
+	margin: 0;
+	background: #F5FBFB;
+}
+
+/* nav bar */
+.navbar {
+	background: #AF9164;
+  
+}
+.nav-link,
+.navbar-brand {
+	color: #FFFFFA;
+	cursor: pointer;
+}
+.nav-link {
+	margin-right: 1em !important;
+}
+.nav-link:hover {
+	color: #2D936C;
+}
+.navbar-collapse {
+	justify-content: flex-end;
+}
+/* account form */
+form{
+  width:40%;
+  display:inline-block;
+  text-align:left;
+  background-color:#AF9164;
+  border:5px solid #AF9164;
+  border-radius:5%;
+}
+.register {
+  background-image: url('/static/images/men-working.jpg');
+	background-size: cover;
+	background-position: center;
+	position: relative;
+	display: flex;
+  flex-flow:column wrap;
+  justify-content:center;
+  align-items:center;
+	text-align: center;
+}
+.register h1 {
+	color: #1B9AAA;
+}
+li{
+  text-decoration: none;
+}
+#submit{
+  border: 1px solid #1B9AAA;
+	background: #1B9AAA;
+	border-radius: 0;
+	color: #FFFFFA;
+}
+#submit:hover{
+  border: 1px solid #FFFFFA;
+	background: #FFFFFA;
+	color: #000;
+  transition:0.45s;
+}
+.loginquestion{
+	color: #666;
+	padding: 40px 0;
+}
+/* media queries */
+@media (max-width: 480px) {
+	.description {
+		left: 0;
+		padding: 0 15px;
+		position: absolute;
+		top: 10%;
+		transform: none;
+		text-align: center;
+	}
+	.description h1 {
+		font-size: 2em;
+	}
+	.description p {
+		font-size: 1.2rem;
+	}
+	.features {
+		margin: 0;
+	}
+}

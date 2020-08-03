@@ -5,9 +5,12 @@ Home
 {% endblock %}
 
 {% block content %}
-{% if current_user.is_anonymous %}
-<h1>Hello Stranger, Welcome to ByteHacks 2020!</h1>
-{% else %}
-<h1>Hello {{ current_user.first_name }}, Welcome to ByteHacks 2020</h1>
-{% endif %}
+<header class="page-header header container-fluid">
+	<div class="overlay"></div>
+	<div class="description">
+		<h1>Welcome!</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque interdum quam odio, quis placerat ante luctus eu. Sed aliquet dolor id sapien rutrum, id vulputate quam iaculis. Suspendisse consectetur mi id libero fringilla, in pharetra sem ullamcorper.</p>
+		<a href="{{ url_for('Dashboard.index') }}"><button class="btn btn-outline-secondary btn-lg">Browse Jobs</button></a>
+	</div>
+</header>
 {% endblock %}

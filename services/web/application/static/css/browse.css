@@ -1,0 +1,41 @@
+body {
+	padding: 0;
+	margin: 0;
+	background: #F5FBFB;
+}
+
+/* nav bar */
+.navbar {
+	background: #AF9164;
+  
+}
+.nav-link,
+.navbar-brand {
+	color: #FFFFFA;
+	cursor: pointer;
+}
+.nav-link {
+	margin-right: 1em !important;
+}
+.nav-link:hover {
+	color: #2D936C;
+}
+.navbar-collapse {
+	justify-content: flex-end;
+}
+/*browse title*/
+h1{
+  color: #1B9AAA;
+}
+.background{
+  background-image: url('/static/images/factory-workers.jpg');
+	background-size: cover;
+	background-position: center;
+	position: relative;
+}
+.jobs{
+  width:10em;
+  background-color: #FFFFFA;
+  color: #1F271B;
+  font-size:2em;
+}

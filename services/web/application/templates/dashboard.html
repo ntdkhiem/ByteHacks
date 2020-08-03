@@ -20,12 +20,12 @@ Dashboard
 {% if jobs %}
     {% for job in jobs %}
     <div id="{{job['id']}}">
-        <p>Name: {{job['name']}}</p>
-        <p>Salary: {{job['salary']}}</p>
-        <p>For: {{ job['gender']|join(',') }}</p>
-        <p>Workers needed: {{job['total_workers']}}</p>
-        <p>Field of work: {{job['fow']}}</p>
-        <p>Location:
+        <p class='name'>Name: {{job['name']}}</p>
+        <p class='salary'>Salary: {{job['salary']}}</p>
+        <p class='gender'>For: {{ job['gender']|join(',') }}</p>
+        <p class='workers'>Workers needed: {{job['total_workers']}}</p>
+        <p class='fow'>Field of work: {{job['fow']}}</p>
+        <p class='location'>Location:
             {% if job['location'] == 'ma' %}
                 Massachusetts
             {% elif job['location'] == 'ny' %}
@@ -36,7 +36,7 @@ Dashboard
                 None
             {% endif %}
         </p>
-        <p>Info: {{job['info']}}</p>
+        <p class='info'>Info: {{job['info']}}</p>
         <button id="btnRegister">Sign up</button>
     </div>
     <hr>
@@ -47,5 +47,6 @@ Dashboard
 {% endblock %}
 
 {% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
 {% endblock %}
