@@ -45,7 +45,6 @@ services:
             - 80:80
         depends_on: 
             - stjk
-            - api
         networks:
             - local-network
         
