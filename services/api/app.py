@@ -33,9 +33,9 @@ def on_snapshot(doc_snapshot, changes, read_time):
             jobs_ref.document(documentSnapShot.id).update({'is_full': True})
             payload['is_full'] = True
 
-        print("[+] CHANGES: ", changes[0].document.to_dict())
+        print("[+] CHANGES: ", changes[0].document.id)
         payload['needed_workers'] = documentSnapShot.get('needed_workers')
-        socketio.emit('message', {payload}, broadcast=True)
+        # socketio.emit('message', payload, broadcast=True)
 
 # Socket.io messages
 @socketio.on('connect')
@@ -86,15 +86,15 @@ def job(job_id):
                 job.update({'is_full': True})
                 payload['is_full'] = True
 
+            name = job.get().get('name')
+            salary = job.get().get('salary')
+            socketio.emit('registered', {'name': name, 'salary': salary})
             # send a live update to every clients
             payload['needed_workers'] = needed_workers
             socketio.send(payload, broadcast=True) 
-
+            print("SENT AN UPDATE")
             # Send an update to notify the client that the registration
             # is completed 
-            name = job.get().get('name')
-            salary = job.get().get('salary')
-            socket.emit('registered', {'name': name, 'salary': salary}, room=request.sid)
 
         except Exception as e:
             return f"An Error occured: {e}"        
