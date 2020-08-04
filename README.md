@@ -4,6 +4,7 @@ The Great Depression job search website
 
 ## Software Stack
 <img src="images/flask.png" width="200">
+<img src="images/nginx.png" width="300">
 <img src="images/bootstrap.png" width="150">
 <img src="images/web-lang.png" width="230">
 <img src="images/socketio.jpg" width="200">
