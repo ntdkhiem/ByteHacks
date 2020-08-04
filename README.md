@@ -29,3 +29,5 @@ The Great Depression job search website
 5. Access the website in http://localhost
 
 *NOTE: First time installing will be very slow but it will run much faster subsequently*
+
+*If you are a ByteHacks reviewer, contact me @ ppkhiemnguyen@gmail.com to get a demo `bfk.json` file*
