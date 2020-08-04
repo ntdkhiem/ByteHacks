@@ -26,4 +26,6 @@ The Great Depression job search website
 
 4. Execute: `docker-compose up`
 
+5. Access the website in http://localhost
+
 *NOTE: First time installing will be very slow but it will run much faster subsequently*
